@@ -54,13 +54,13 @@ extension Double {
     
     func getTemperatureString(from scale: TemperatureScale) -> String {
         switch scale {
-        case .Kelvin:
+        case .kelvin:
             switch TEMPERATURE_SCALE_SETTING {
-            case .Kelvin:
+            case .kelvin:
                 return "\(String(format:"%.0f", self))°"
-            case .Celsius :
+            case .celsius :
                 return "\(String(format:"%.0f", self.kelvinToCelsius()))°"
-            case .Fahrenheit:
+            case .fahrenheit:
                 return "\(String(format:"%.0f", self.kelvinToCelsius()))°"
             }
         default:

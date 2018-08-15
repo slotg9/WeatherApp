@@ -17,7 +17,7 @@ struct HourlyForecastFromOpenWeatherAPI: PeriodicForecastProtocol {
                 if Calendar.current.isDateInToday(date) || Calendar.current.isDateInTomorrow(date) {
                     let time = date.formatForCurrentLocale(withFormat: "h:mm a")
                     let imageName = getImageName(for: instance.weather[0].id)
-                    let temp = (instance.main.temp).getTemperatureString(from: .Kelvin)
+                    let temp = (instance.main.temp).getTemperatureString(from: .kelvin)
                     priodicForecats.append(HourlyInstanceForecast(time: time, conditionImgName: imageName, temperature: temp))
                 }
             }
@@ -59,7 +59,7 @@ struct DailyForecastFromOpenWeatherAPI: PeriodicForecastProtocol {
                 if !Calendar.current.isDateInToday(date) && date.formatForCurrentLocale(withFormat: "HH") == "12"{
                     let time = date.formatForCurrentLocale(withFormat: "EEE")
                     let imageName = getImageName(for: instance.weather[0].id)
-                    let temp = (instance.main.temp).getTemperatureString(from: .Kelvin)
+                    let temp = (instance.main.temp).getTemperatureString(from: .kelvin)
                     priodicForecats.append(HourlyInstanceForecast(time: time, conditionImgName: imageName, temperature: temp))
                 }
             }

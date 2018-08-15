@@ -17,8 +17,8 @@ class CityVC: UIViewController {
         self.dailyForecastAPI = dailyForecastAPI
 
         currentWeatherVC = CurrentWeatherVC(for: currentWeatherAPI, withCoordinates: coordinates)
-        hourlyForecastVC = PeriodicForecastCVC(for: hourlyForecastAPI, period: .Hourly, withCoordinates: coordinates, collectionViewLayout: UICollectionViewFlowLayout())
-        dailyForecastVC = PeriodicForecastCVC(for: dailyForecastAPI, period: .Daily, withCoordinates: coordinates, collectionViewLayout: UICollectionViewFlowLayout())
+        hourlyForecastVC = PeriodicForecastCVC(for: hourlyForecastAPI, period: .hourly, withCoordinates: coordinates, collectionViewLayout: UICollectionViewFlowLayout())
+        dailyForecastVC = PeriodicForecastCVC(for: dailyForecastAPI, period: .daily, withCoordinates: coordinates, collectionViewLayout: UICollectionViewFlowLayout())
         
         super.init(nibName:nil, bundle:nil)
         periodControl.delegate = self

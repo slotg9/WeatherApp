@@ -56,9 +56,9 @@ class MainCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, C
             return cell
         }
         
-        let cityVC = CityVC(currentWeatherAPI: API.OpenWeather,
-                            hourlyForecastAPI: API.OpenWeather,
-                            dailyForecastAPI: API.OpenWeather,
+        let cityVC = CityVC(currentWeatherAPI: API.openWeather,
+                            hourlyForecastAPI: API.openWeather,
+                            dailyForecastAPI: API.openWeather,
                             coordinates: (Int(currentLocation.coordinate.latitude), Int(currentLocation.coordinate.longitude)) )
         self.addChildViewController(cityVC)
         cell.contentView.addSubview(cityVC.view)

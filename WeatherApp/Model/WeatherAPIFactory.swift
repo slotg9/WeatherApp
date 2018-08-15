@@ -1,12 +1,12 @@
 import Foundation
 
 enum API {
-    case OpenWeather
+    case openWeather
 }
 
 enum Period {
-    case Hourly
-    case Daily
+    case hourly
+    case daily
 }
 
 protocol CurrentWeatherFactory {
@@ -22,13 +22,13 @@ protocol PeriodicWeatherFactory {
 struct CurrentWeatherServiceFactory: CurrentWeatherFactory {
     static func createURL(for API: API, with coord: (Int, Int)) -> URL {
         switch API {
-        case .OpenWeather: return URL(string: "https://api.openweathermap.org/data/2.5/" + "weather?lat=\(coord.0)&lon=\(coord.1)&appid=" + "219e59da27c670ea49ebd68d4ad2539f")!
+        case .openWeather: return URL(string: "https://api.openweathermap.org/data/2.5/" + "weather?lat=\(coord.0)&lon=\(coord.1)&appid=" + "219e59da27c670ea49ebd68d4ad2539f")!
         }
     }
     
     static func createModel(for API: API) -> CurrentWeatherProtocol {
         switch API {
-        case .OpenWeather: return CurrentWeatherFromOpenWeatherAPI()
+        case .openWeather: return CurrentWeatherFromOpenWeatherAPI()
         }
     }
 }
@@ -36,20 +36,20 @@ struct CurrentWeatherServiceFactory: CurrentWeatherFactory {
 struct PeriodicForecastServiceFactory: PeriodicWeatherFactory {
     static func createURL(for API: API, period: Period, with coord: (Int, Int)) -> URL {
         switch API {
-        case .OpenWeather:
+        case .openWeather:
             switch period {
-            case .Hourly: return URL(string: "https://api.openweathermap.org/data/2.5/" + "forecast?lat=\(coord.0)&lon=\(coord.1)&appid=" + "219e59da27c670ea49ebd68d4ad2539f")!
-            case .Daily: return URL(string: "https://api.openweathermap.org/data/2.5/" + "forecast?lat=\(coord.0)&lon=\(coord.1)&appid=" + "219e59da27c670ea49ebd68d4ad2539f")!
+            case .hourly: return URL(string: "https://api.openweathermap.org/data/2.5/" + "forecast?lat=\(coord.0)&lon=\(coord.1)&appid=" + "219e59da27c670ea49ebd68d4ad2539f")!
+            case .daily: return URL(string: "https://api.openweathermap.org/data/2.5/" + "forecast?lat=\(coord.0)&lon=\(coord.1)&appid=" + "219e59da27c670ea49ebd68d4ad2539f")!
             }
         }
     }
     
     static func createModel(for API: API, period: Period) -> PeriodicForecastProtocol {
         switch API {
-        case .OpenWeather:
+        case .openWeather:
             switch period {
-            case .Hourly: return HourlyForecastFromOpenWeatherAPI()
-            case .Daily: return DailyForecastFromOpenWeatherAPI()
+            case .hourly: return HourlyForecastFromOpenWeatherAPI()
+            case .daily: return DailyForecastFromOpenWeatherAPI()
             }
         }
     }
