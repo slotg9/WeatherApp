@@ -45,8 +45,6 @@ class MainCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, C
         return 1
     }
     
-    let colors: [UIColor] = [.red, .blue]
-    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
@@ -65,7 +63,6 @@ class MainCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, C
         self.addChildViewController(cityVC)
         cell.contentView.addSubview(cityVC.view)
         cityVC.view.frame = cell.contentView.frame
-        cityVC.view.backgroundColor = colors[indexPath.item]
         return cell
     }
     
