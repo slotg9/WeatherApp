@@ -8,7 +8,7 @@ struct CurrentWeatherFromOpenWeatherAPI: CurrentWeatherProtocol {
     mutating func updateWithData(_ data: Data){
         if let weather = data.decodeJSON(with: JSONDecodable.self) {
             temperature = (weather.main.temp).getTemperatureString(from: .Kelvin)
-            condition = weather.weather[0].description
+            condition = weather.weather[0].description.capitalized
         }
     }
     struct JSONDecodable: Decodable {
