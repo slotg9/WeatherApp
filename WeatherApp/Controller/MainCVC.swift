@@ -3,11 +3,10 @@ import CoreLocation
 
 private let reuseIdentifier = "Cell"
 
-class MainCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class MainCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -16,8 +15,9 @@ class MainCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-
+        // TODO: link to settings on second launch witout permission
         
         if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
@@ -29,10 +29,17 @@ class MainCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedWhenInUse: self.collectionView?.reloadData()
+        // TODO: other cases
+        default: break
+        }
+    }
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
@@ -43,11 +50,14 @@ class MainCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
-        var currentLocation: CLLocation!
-        if( CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() == .authorizedAlways){
-            currentLocation = locationManager.location
+        var currentLocation: CLLocation
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
+            currentLocation = locationManager.location ?? CLLocation(latitude: 0, longitude: 0)
+        } else {
+            // TODO: cell with message about permission?
+            return cell
         }
+        
         let cityVC = CityVC(currentWeatherAPI: API.OpenWeather,
                             hourlyForecastAPI: API.OpenWeather,
                             dailyForecastAPI: API.OpenWeather,
