@@ -5,6 +5,7 @@ class CurrentWeatherView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpViews()
+        // TODO: set up normal background
         backgroundColor = UIColor(patternImage: UIImage(named: "background.jpg")!)
     }
     

@@ -1,5 +1,6 @@
 import Foundation
 
+// TODO: rethink protocol naming
 protocol HasTemperature {
     var temperature: String { get }
 }
@@ -19,8 +20,6 @@ protocol HasTime {
 protocol UpdatableWithData {
     mutating func updateWithData(_ data: Data)
 }
-
-//naming
 
 protocol CurrentWeatherProtocol: HasTemperature, HasCondition, UpdatableWithData {
     

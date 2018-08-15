@@ -28,17 +28,14 @@ class CityVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
         
         addChildViewController(dailyForecastVC)
         addChildViewController(hourlyForecastVC)
         addChildViewController(currentWeatherVC)
         
         hourlyForecastVC.collectionView?.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 0)
-        dailyForecastVC.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         dailyForecastVC.view.isHidden = true
         dailyForecastVC.collectionView?.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 0)
         setUpViews()
@@ -60,15 +57,13 @@ class CityVC: UIViewController {
         periodicForecastBlock.addSubview(periodControl)
         periodicForecastBlock.addSubview(dailyForecastVC.view)
         periodicForecastBlock.addSubview(hourlyForecastVC.view)
-        //abstract on final design
+        // TODO: abstract layout
         view.addConstrainsWithFormat(format: "V:|-15-[v0(40)]-15-[v1]-25-|", views: periodControl, dailyForecastVC.view)
         view.addConstrainsWithFormat(format: "V:|-15-[v0(40)]-15-[v1]-25-|", views: periodControl, hourlyForecastVC.view)
         view.addConstrainsWithFormat(format: "H:|-80-[v0]-80-|", views: periodControl)
         view.addConstrainsWithFormat(format: "H:|[v0]|", views: dailyForecastVC.view)
         view.addConstrainsWithFormat(format: "H:|[v0]|", views: hourlyForecastVC.view)
     }
-    
-
 }
 
 extension CityVC: PeriodSelectorDelegate {
@@ -81,10 +76,7 @@ extension CityVC: PeriodSelectorDelegate {
         hourlyForecastVC.view.isHidden = true
         dailyForecastVC.view.isHidden = false
     }
-    
-    
 }
-
 
 extension CityVC {
     private struct SizeRatio {

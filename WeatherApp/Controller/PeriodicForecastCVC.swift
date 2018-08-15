@@ -75,7 +75,7 @@ extension PeriodicForecastCVC {
     }
     
     private var cellSpacing: CGFloat {
-        //magic number?
+        // TODO: magic number
         return (view.bounds.width - cellWidth * 4)/4
     }
 

@@ -9,7 +9,6 @@ class PeriodSelector: UIView {
     
     
     init (leftButtonTitle: String, rightButtonTitle: String) {
-        //rename?
         self.leftButtonTitle = leftButtonTitle
         self.rightButtonTitle = rightButtonTitle
         super .init(frame: CGRect.zero)
@@ -48,16 +47,17 @@ class PeriodSelector: UIView {
     }()
     
     @objc func leftButtonTapped(_ sender : UIButton) {
-        //refactor? enum?
+        // TODO: enum on buttons?
         self.leftPeriodButton.setTitleColor(ColorScheme.selectedFontColor, for: .normal)
         leftPeriodButton.isUserInteractionEnabled = false
         self.rightPeriodButton.setTitleColor(ColorScheme.notSelectedFontColot, for: .normal)
         rightPeriodButton.isUserInteractionEnabled = true
+        
         selectedStateIndicatorLeftConstraint?.constant = selectedStateIndicatorIndent
         UIView.animate(withDuration: 0.1) {
             self.layoutIfNeeded()
-
         }
+        
         delegate?.leftPeriodTapped()
     }
     
@@ -66,10 +66,12 @@ class PeriodSelector: UIView {
         leftPeriodButton.isUserInteractionEnabled = true
         self.rightPeriodButton.setTitleColor(ColorScheme.selectedFontColor, for: .normal)
         rightPeriodButton.isUserInteractionEnabled = false
+        
         selectedStateIndicatorLeftConstraint?.constant = selectedStateIndicatorIndent * 3 + selectedStateIndicatorWidth
         UIView.animate(withDuration: 0.1) {
             self.layoutIfNeeded()
         }
+        
         delegate?.rightPeriodTapped()
     }
 
@@ -112,7 +114,6 @@ extension PeriodSelector {
         static let cornerRadiusToBoundsHeight: CGFloat = 0.4
         static let selectedStateIndicatorIndentToBoundsHeight: CGFloat = 0.12
     }
-    
     private var cornerRadius: CGFloat {
         return bounds.height * SizeRatio.cornerRadiusToBoundsHeight
     }

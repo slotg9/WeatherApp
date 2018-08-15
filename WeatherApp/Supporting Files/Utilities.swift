@@ -1,7 +1,7 @@
 import UIKit
 
 extension UIView {
-    //rename t
+    // TODO: rename "Constraints", to sloooooow
     func addConstrainsWithFormat(format: String, views: UIView...) {
         var viewsDictionary = [String : UIView]()
         for (index, view) in views.enumerated() {
@@ -9,15 +9,11 @@ extension UIView {
             viewsDictionary[key] = view
             view.translatesAutoresizingMaskIntoConstraints = false
         }
-        
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
     }
 }
 
-
-
 extension Data {
-    //todo error
     func decodeJSON<T: Decodable>(with type: T.Type) -> T? {
         let JSON = try? JSONDecoder().decode(type, from: self)
         return JSON
@@ -70,17 +66,6 @@ extension Double {
         default:
             return "functionality not implemented"
         }
-    }
-}
-
-extension Double {
-    func getTimeStringFromUnixDate(withFormat format: String) -> String {
-        let date = Date(timeIntervalSince1970: self)
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone.current //Set timezone that you want
-        dateFormatter.locale = NSLocale.current
-        dateFormatter.dateFormat = format //Specify your format that you want
-        return dateFormatter.string(from: date)
     }
 }
 

@@ -8,7 +8,7 @@ enum Period {
     case Hourly
     case Daily
 }
-//Optional
+
 protocol CurrentWeatherFactory {
     static func createURL(for API: API, with coord: (Int, Int)) -> URL
     static func createModel(for API: API) -> CurrentWeatherProtocol

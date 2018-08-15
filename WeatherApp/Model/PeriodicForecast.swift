@@ -10,7 +10,7 @@ struct HourlyForecastFromOpenWeatherAPI: PeriodicForecastProtocol {
     var priodicForecats = [PeriodicForecastInstanceProtocol]()
     
     mutating func updateWithData(_ data: Data){
-        //error???
+        //TODO: handle and/or print decoding errors
         if let forecast = data.decodeJSON(with: JSONDecodable.self) {
             for instance in forecast.list {
                 let date = Date(timeIntervalSince1970: instance.dt)
@@ -53,7 +53,6 @@ struct DailyForecastFromOpenWeatherAPI: PeriodicForecastProtocol {
     var priodicForecats = [PeriodicForecastInstanceProtocol]()
     
     mutating func updateWithData(_ data: Data){
-        //error???
         if let forecast = data.decodeJSON(with: JSONDecodable.self) {
             for instance in forecast.list {
                 let date = Date(timeIntervalSince1970: instance.dt)
@@ -112,10 +111,3 @@ fileprivate func getImageName(for status: Int) -> String {
         return "weather-few-clouds-icon"
     }
 }
-
-
-
-
-
-
-
