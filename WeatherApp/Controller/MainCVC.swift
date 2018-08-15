@@ -26,7 +26,7 @@ class MainCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, C
         collectionView?.isPagingEnabled = true
         collectionView?.bounces = false
         collectionView?.contentInset.top = -UIApplication.shared.statusBarFrame.height
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

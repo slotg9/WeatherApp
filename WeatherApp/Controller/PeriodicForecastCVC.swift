@@ -26,7 +26,7 @@ class PeriodicForecastCVC: UICollectionViewController, UICollectionViewDelegateF
         }
         collectionView?.contentInset = UIEdgeInsetsMake(0, cellSpacing/2, 0, 0)
         
-        self.collectionView!.register(PeriodicForecastCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView?.register(PeriodicForecastCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {

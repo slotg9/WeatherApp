@@ -3,7 +3,7 @@ import UIKit
 class PeriodSelector: UIView {
     var delegate: PeriodSelectorDelegate?
     var constraintsSetUp = false
-    var selectedStateIndicatorLeftConstraint: NSLayoutConstraint? = nil
+    var selectedStateIndicatorLeftConstraint: NSLayoutConstraint?
     var leftButtonTitle: String
     var rightButtonTitle: String
     
