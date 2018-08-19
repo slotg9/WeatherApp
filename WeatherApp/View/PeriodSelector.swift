@@ -1,7 +1,7 @@
 import UIKit
 
 class PeriodSelector: UIView {
-    var delegate: PeriodSelectorDelegate?
+    weak var delegate: PeriodSelectorDelegate?
     var constraintsSetUp = false
     var selectedStateIndicatorLeftConstraint: NSLayoutConstraint?
     var leftButtonTitle: String
@@ -129,7 +129,7 @@ extension PeriodSelector {
 }
 
 
-protocol PeriodSelectorDelegate {
+protocol PeriodSelectorDelegate: AnyObject {
     func leftPeriodTapped () -> ()
     func rightPeriodTapped () -> ()
 }

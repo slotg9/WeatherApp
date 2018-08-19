@@ -22,6 +22,7 @@ protocol PeriodicWeatherFactory {
 struct CurrentWeatherServiceFactory: CurrentWeatherFactory {
     static func createURL(for API: API, with coord: (Int, Int)) -> URL {
         switch API {
+        // TODO: abstract API keys
         case .openWeather: return URL(string: "https://api.openweathermap.org/data/2.5/" + "weather?lat=\(coord.0)&lon=\(coord.1)&appid=" + "219e59da27c670ea49ebd68d4ad2539f")!
         }
     }
