@@ -41,10 +41,10 @@ class PeriodicForecastCell: UICollectionViewCell {
         addSubview(temperatureLabel)
         addSubview(timeLabel)
         addSubview(conditionImgView)
-        addConstrainsWithFormat(format: "H:|[v0]|", views: temperatureLabel)
-        addConstrainsWithFormat(format: "H:|[v0]|", views: timeLabel)
-        addConstrainsWithFormat(format: "H:|[v0]|", views: conditionImgView)
-        addConstrainsWithFormat(format: "V:|-10-[v0(20)][v1][v2(20)]-10-|", views: timeLabel, conditionImgView, temperatureLabel)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: temperatureLabel)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: timeLabel)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: conditionImgView)
+        addConstraintsWithFormat(format: "V:|-10-[v0(20)][v1][v2(20)]-10-|", views: timeLabel, conditionImgView, temperatureLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {

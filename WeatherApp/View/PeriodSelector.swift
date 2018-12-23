@@ -77,16 +77,16 @@ class PeriodSelector: UIView {
 
     func setUpViews() {
         addSubview(selectedStateIndicator)
-        addConstrainsWithFormat(format: "H:[v0(\(selectedStateIndicatorWidth))]", views: selectedStateIndicator)
-        addConstrainsWithFormat(format: "V:|-\(selectedStateIndicatorIndent)-[v0]-\(selectedStateIndicatorIndent)-|", views: selectedStateIndicator)
+        addConstraintsWithFormat(format: "H:[v0(\(selectedStateIndicatorWidth))]", views: selectedStateIndicator)
+        addConstraintsWithFormat(format: "V:|-\(selectedStateIndicatorIndent)-[v0]-\(selectedStateIndicatorIndent)-|", views: selectedStateIndicator)
         selectedStateIndicatorLeftConstraint = selectedStateIndicator.leftAnchor.constraint(equalTo: self.leftAnchor, constant: selectedStateIndicatorIndent)
         addConstraints([selectedStateIndicatorLeftConstraint!])
 
         addSubview(leftPeriodButton)
         addSubview(rightPeriodButton)
-        addConstrainsWithFormat(format: "V:|[v0]|", views: leftPeriodButton)
-        addConstrainsWithFormat(format: "V:|[v0]|", views: rightPeriodButton)
-        addConstrainsWithFormat(format: "H:|[v0][v1(v0)]|", views: leftPeriodButton, rightPeriodButton)
+        addConstraintsWithFormat(format: "V:|[v0]|", views: leftPeriodButton)
+        addConstraintsWithFormat(format: "V:|[v0]|", views: rightPeriodButton)
+        addConstraintsWithFormat(format: "H:|[v0][v1(v0)]|", views: leftPeriodButton, rightPeriodButton)
         
         layer.cornerRadius = cornerRadius
         selectedStateIndicator.layer.cornerRadius = selectedStateIndicatorCornerRadius

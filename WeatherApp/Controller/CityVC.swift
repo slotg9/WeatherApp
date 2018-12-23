@@ -50,19 +50,19 @@ class CityVC: UIViewController {
     private func setUpViews() {
         view.addSubview(currentWeatherVC.view)
         view.addSubview(periodicForecastBlock)
-        view.addConstrainsWithFormat(format: "V:|[v0][v1(\(periodicForecastBlockHeight))]|", views: currentWeatherVC.view, periodicForecastBlock)
-        view.addConstrainsWithFormat(format: "H:|[v0]|", views: periodicForecastBlock)
-        view.addConstrainsWithFormat(format: "H:|[v0]|", views: currentWeatherVC.view)
+        view.addConstraintsWithFormat(format: "V:|[v0][v1(\(periodicForecastBlockHeight))]|", views: currentWeatherVC.view, periodicForecastBlock)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: periodicForecastBlock)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: currentWeatherVC.view)
         
         periodicForecastBlock.addSubview(periodControl)
         periodicForecastBlock.addSubview(dailyForecastVC.view)
         periodicForecastBlock.addSubview(hourlyForecastVC.view)
         // TODO: abstract layout
-        view.addConstrainsWithFormat(format: "V:|-15-[v0(40)]-15-[v1]-25-|", views: periodControl, dailyForecastVC.view)
-        view.addConstrainsWithFormat(format: "V:|-15-[v0(40)]-15-[v1]-25-|", views: periodControl, hourlyForecastVC.view)
-        view.addConstrainsWithFormat(format: "H:|-80-[v0]-80-|", views: periodControl)
-        view.addConstrainsWithFormat(format: "H:|[v0]|", views: dailyForecastVC.view)
-        view.addConstrainsWithFormat(format: "H:|[v0]|", views: hourlyForecastVC.view)
+        view.addConstraintsWithFormat(format: "V:|-15-[v0(40)]-15-[v1]-25-|", views: periodControl, dailyForecastVC.view)
+        view.addConstraintsWithFormat(format: "V:|-15-[v0(40)]-15-[v1]-25-|", views: periodControl, hourlyForecastVC.view)
+        view.addConstraintsWithFormat(format: "H:|-80-[v0]-80-|", views: periodControl)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: dailyForecastVC.view)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: hourlyForecastVC.view)
     }
 }
 

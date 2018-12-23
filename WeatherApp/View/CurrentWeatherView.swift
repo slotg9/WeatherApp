@@ -37,9 +37,9 @@ class CurrentWeatherView: UIView {
     func setUpViews() {
         addSubview(temperatureLabel)
         addSubview(conditionLabel)
-        addConstrainsWithFormat(format: "H:|[v0]|", views: temperatureLabel)
-        addConstrainsWithFormat(format: "H:|[v0]|", views: conditionLabel)
-        addConstrainsWithFormat(format: "V:|-115-[v0][v1]-(>=10)-|", views: temperatureLabel, conditionLabel)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: temperatureLabel)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: conditionLabel)
+        addConstraintsWithFormat(format: "V:|-115-[v0][v1]-(>=10)-|", views: temperatureLabel, conditionLabel)
     }
     
     func configure(temperature: String, condition: String) {
