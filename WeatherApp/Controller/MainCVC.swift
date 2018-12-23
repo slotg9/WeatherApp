@@ -3,10 +3,22 @@ import CoreLocation
 
 private let reuseIdentifier = "Cell"
 
-class MainCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
+class MainCVC: UICollectionViewController, CLLocationManagerDelegate {
     
+    // MARK: - Properties
     let locationManager = CLLocationManager()
     
+    // MARK: - Initialization
+    init() {
+        let layout = UICollectionViewFlowLayout()
+        super.init(collectionViewLayout: layout)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - View Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -15,10 +27,11 @@ class MainCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, C
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        // TODO: link to settings on second launch witout permission
-        
+        setUpLocationManager()
+        setUpCollectionView()
+    }
+    
+    func setUpCollectionView() {
         if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.scrollDirection = .horizontal
             flowLayout.minimumLineSpacing = 0
@@ -29,6 +42,12 @@ class MainCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, C
         self.collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
+    func setUpLocationManager() {
+        // TODO: link to settings on second launch witout permission
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+    }
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .authorizedWhenInUse: self.collectionView?.reloadData()
@@ -36,6 +55,10 @@ class MainCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, C
         default: break
         }
     }
+}
+
+// MARK: - UICollectionViewDataSource
+extension MainCVC {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -65,9 +88,12 @@ class MainCVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, C
         cityVC.view.frame = cell.contentView.frame
         return cell
     }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension MainCVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
     }
-
 }

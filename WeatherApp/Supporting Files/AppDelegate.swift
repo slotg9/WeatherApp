@@ -14,8 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let layout = UICollectionViewFlowLayout()
-        let mainCVC = MainCVC(collectionViewLayout: layout)
+        let mainCVC = MainCVC()
         let naivgationController = UINavigationController(rootViewController: mainCVC)
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
