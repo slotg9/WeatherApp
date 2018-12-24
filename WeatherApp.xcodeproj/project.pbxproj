@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52AAC8AF21CFDE9100D6ED88 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AAC8AE21CFDE9100D6ED88 /* Temperature.swift */; };
 		8420BB3320C5BE4300CF72C1 /* PeriodicForecastCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8420BB3220C5BE4300CF72C1 /* PeriodicForecastCVC.swift */; };
 		8424C1C720C5152D00CC4976 /* CityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8424C1C620C5152D00CC4976 /* CityVC.swift */; };
 		8429A7252108DE180048154D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8429A7242108DE180048154D /* APIService.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52AAC8AE21CFDE9100D6ED88 /* Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		8420BB3220C5BE4300CF72C1 /* PeriodicForecastCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodicForecastCVC.swift; sourceTree = "<group>"; };
 		8424C1C620C5152D00CC4976 /* CityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityVC.swift; sourceTree = "<group>"; };
 		8429A7242108DE180048154D /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 		8490156D20FFA3E000F9B7D9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				52AAC8AE21CFDE9100D6ED88 /* Temperature.swift */,
 				8490157520FFB00400F9B7D9 /* CurrentWeather.swift */,
 				846624652101B2E900A3994E /* PeriodicForecast.swift */,
 				8467E8952100E86A008C1616 /* WeatherProtocols.swift */,
@@ -221,6 +224,7 @@
 				8490157620FFB00400F9B7D9 /* CurrentWeather.swift in Sources */,
 				8431995C20C2EC2F003A1F18 /* AppDelegate.swift in Sources */,
 				8420BB3320C5BE4300CF72C1 /* PeriodicForecastCVC.swift in Sources */,
+				52AAC8AF21CFDE9100D6ED88 /* Temperature.swift in Sources */,
 				8429A7252108DE180048154D /* APIService.swift in Sources */,
 				8467F3D52108519E00EF3E6F /* LoadingViewController.swift in Sources */,
 				8467E8962100E86A008C1616 /* WeatherProtocols.swift in Sources */,

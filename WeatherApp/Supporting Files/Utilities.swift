@@ -43,31 +43,6 @@ extension UIViewController {
     }
 }
 
-extension Double {
-    func kelvinToCelsius() -> Double {
-        return self - 273.15
-    }
-    func kelvinToFahrenheit() -> Double {
-        return self*(9/5) - 459.67
-    }
-    
-    func getTemperatureString(from scale: TemperatureScale) -> String {
-        switch scale {
-        case .kelvin:
-            switch TEMPERATURE_SCALE_SETTING {
-            case .kelvin:
-                return "\(String(format:"%.0f", self))°"
-            case .celsius :
-                return "\(String(format:"%.0f", self.kelvinToCelsius()))°"
-            case .fahrenheit:
-                return "\(String(format:"%.0f", self.kelvinToCelsius()))°"
-            }
-        default:
-            return "functionality not implemented"
-        }
-    }
-}
-
 extension Date {
     func formatForCurrentLocale(withFormat format: String) -> String {
         let dateFormatter = DateFormatter()

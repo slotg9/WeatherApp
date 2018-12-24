@@ -1,13 +1,5 @@
 import UIKit
 
-enum TemperatureScale {
-    case celsius
-    case kelvin
-    case fahrenheit
-}
-
-var TEMPERATURE_SCALE_SETTING: TemperatureScale = TemperatureScale.celsius
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

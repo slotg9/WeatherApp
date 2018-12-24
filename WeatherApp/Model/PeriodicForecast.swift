@@ -3,7 +3,11 @@ import Foundation
 struct HourlyInstanceForecast: PeriodicForecastInstanceProtocol {
     var time: String
     var conditionImgName: String
-    var temperature: String
+    var temp: Temperature?
+    var temperature: String {
+        guard let temp = temp else {return ""}
+        return String.init(describing: temp)
+    }
 }
 
 struct HourlyForecastFromOpenWeatherAPI: PeriodicForecastProtocol {
@@ -17,14 +21,14 @@ struct HourlyForecastFromOpenWeatherAPI: PeriodicForecastProtocol {
                 if Calendar.current.isDateInToday(date) || Calendar.current.isDateInTomorrow(date) {
                     let time = date.formatForCurrentLocale(withFormat: "h:mm a")
                     let imageName = getImageName(for: instance.weather[0].id)
-                    let temp = (instance.main.temp).getTemperatureString(from: .kelvin)
-                    priodicForecats.append(HourlyInstanceForecast(time: time, conditionImgName: imageName, temperature: temp))
+                    let temp = Temperature(instance.main.temp, in: .kelvin)
+                    priodicForecats.append(HourlyInstanceForecast(time: time, conditionImgName: imageName, temp: temp))
                 }
             }
         }
     }
     
-    struct JSONDecodable: Decodable {
+    private struct JSONDecodable: Decodable {
         var list: [List]
         
         struct List: Decodable {
@@ -46,7 +50,11 @@ struct HourlyForecastFromOpenWeatherAPI: PeriodicForecastProtocol {
 struct DailyInstanceForecast: PeriodicForecastInstanceProtocol {
     var time: String
     var conditionImgName: String
-    var temperature: String
+    var temp: Temperature?
+    var temperature: String {
+        guard let temp = temp else {return ""}
+        return String.init(describing: temp)
+    }
 }
 
 struct DailyForecastFromOpenWeatherAPI: PeriodicForecastProtocol {
@@ -59,14 +67,14 @@ struct DailyForecastFromOpenWeatherAPI: PeriodicForecastProtocol {
                 if !Calendar.current.isDateInToday(date) && date.formatForCurrentLocale(withFormat: "HH") == "12"{
                     let time = date.formatForCurrentLocale(withFormat: "EEE")
                     let imageName = getImageName(for: instance.weather[0].id)
-                    let temp = (instance.main.temp).getTemperatureString(from: .kelvin)
-                    priodicForecats.append(HourlyInstanceForecast(time: time, conditionImgName: imageName, temperature: temp))
+                    let temp = Temperature(instance.main.temp, in: .kelvin)
+                    priodicForecats.append(DailyInstanceForecast(time: time, conditionImgName: imageName, temp: temp))
                 }
             }
         }
     }
     
-    struct JSONDecodable: Decodable {
+    private struct JSONDecodable: Decodable {
         var list: [List]
         
         struct List: Decodable {
