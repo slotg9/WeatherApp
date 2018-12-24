@@ -5,7 +5,7 @@ struct Temperature {
     static private var appScaleSetting = Scale.celsius
     
     var value: Double {
-        switch Temperature.appScaleSetting {
+        switch scale {
         case .celsius:
             return celsius
         case .kelvin:
@@ -14,7 +14,7 @@ struct Temperature {
             return fahrenheit
         }
     }
-    private var scale: Scale
+    private var scale: Scale = Temperature.appScaleSetting
     
     private var celsius: Double = 0
     private var kelvin: Double {
@@ -35,7 +35,6 @@ struct Temperature {
     }
     
     init(_ value: Double, in scale: Scale) {
-        self.scale = scale
         switch scale {
         case .celsius:
             celsius = value
