@@ -50,6 +50,7 @@ class MainCVC: UICollectionViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
+        //TODO: - called on launch, causes viewWillAppear(and API calls) to be called twice
         case .authorizedWhenInUse: self.collectionView?.reloadData()
         // TODO: other cases
         default: break
