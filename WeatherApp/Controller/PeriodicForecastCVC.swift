@@ -34,12 +34,22 @@ class PeriodicForecastCVC: UICollectionViewController, UICollectionViewDelegateF
         let loadingViewController = LoadingViewController()
         addWithFrame(loadingViewController)
         
-        apiService.getData(from: weatherURL) { [unowned self] (data, errorMessage) in
+        apiService.getData(from: weatherURL) { [unowned self] (data, response, error) in
             loadingViewController.remove()
-            self.weatherModel.updateWithData(data)
-            self.collectionView?.reloadData()
-            if !errorMessage.isEmpty { print("Search error: " + errorMessage) }
+            if let error = error {
+                self.handleClientError(error)
+                return
+            }
+            if let httpResponse = response as? HTTPURLResponse, !(200...299).contains(httpResponse.statusCode) {
+                self.handleServerError(httpResponse)
+                return
+            }
+            if let data = data {
+                self.weatherModel.updateWithData(data)
+                self.collectionView?.reloadData()
+            }
         }
+        
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -64,6 +74,15 @@ class PeriodicForecastCVC: UICollectionViewController, UICollectionViewDelegateF
 
 }
 
+extension PeriodicForecastCVC {
+    func handleClientError(_ error: Error) {
+        
+    }
+    
+    func handleServerError(_ response: HTTPURLResponse) {
+        
+    }
+}
 
 extension PeriodicForecastCVC {
     private struct SizeRatio {

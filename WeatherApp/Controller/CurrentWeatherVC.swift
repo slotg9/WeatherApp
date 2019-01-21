@@ -26,11 +26,20 @@ class CurrentWeatherVC: UIViewController {
         let loadingViewController = LoadingViewController()
         addWithFrame(loadingViewController)
         
-        apiService.getData(from: weatherURL) { [unowned self] (data, errorMessage) in
+        apiService.getData(from: weatherURL) { [unowned self] (data, response, error) in
             loadingViewController.remove()
-            self.weatherModel.updateWithData(data)
-            self.updateViewsFromModel()
-            if !errorMessage.isEmpty { print("Search error: " + errorMessage) }
+            if let error = error {
+                self.handleClientError(error)
+                return
+            }
+            if let httpResponse = response as? HTTPURLResponse, !(200...299).contains(httpResponse.statusCode) {
+                self.handleServerError(httpResponse)
+                return
+            }
+            if let data = data {
+                self.weatherModel.updateWithData(data)
+                self.updateViewsFromModel()
+            }
         }
 
     }
@@ -39,6 +48,16 @@ class CurrentWeatherVC: UIViewController {
         currentView.configure(temperature: weatherModel.temperature, condition: weatherModel.condition)
     }
 
+}
+
+extension CurrentWeatherVC {
+    func handleClientError(_ error: Error) {
+        
+    }
+    
+    func handleServerError(_ response: HTTPURLResponse) {
+        
+    }
 }
 
 extension CurrentWeatherVC {
