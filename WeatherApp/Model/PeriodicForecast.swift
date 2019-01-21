@@ -4,10 +4,6 @@ struct HourlyInstanceForecast: PeriodicForecastInstanceProtocol {
     var time: String
     var conditionImgName: String
     var temp: Temperature?
-    var temperature: String {
-        guard let temp = temp else {return ""}
-        return String.init(describing: temp)
-    }
 }
 
 struct HourlyForecastFromOpenWeatherAPI: PeriodicForecastProtocol {
@@ -51,10 +47,6 @@ struct DailyInstanceForecast: PeriodicForecastInstanceProtocol {
     var time: String
     var conditionImgName: String
     var temp: Temperature?
-    var temperature: String {
-        guard let temp = temp else {return ""}
-        return String.init(describing: temp)
-    }
 }
 
 struct DailyForecastFromOpenWeatherAPI: PeriodicForecastProtocol {
@@ -64,7 +56,8 @@ struct DailyForecastFromOpenWeatherAPI: PeriodicForecastProtocol {
         if let forecast = data.decodeJSON(with: JSONDecodable.self) {
             for instance in forecast.list {
                 let date = Date(timeIntervalSince1970: instance.dt)
-                if !Calendar.current.isDateInToday(date) && date.formatForCurrentLocale(withFormat: "HH") == "12"{
+                //TODO: - Fix time zone bug
+                if !Calendar.current.isDateInToday(date) && date.formatForCurrentLocale(withFormat: "HH") == "14"{
                     let time = date.formatForCurrentLocale(withFormat: "EEE")
                     let imageName = getImageName(for: instance.weather[0].id)
                     let temp = Temperature(instance.main.temp, in: .kelvin)

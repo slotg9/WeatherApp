@@ -3,10 +3,7 @@ import Foundation
 
 struct CurrentWeatherFromOpenWeatherAPI: CurrentWeatherProtocol {
     var temp: Temperature?
-    var temperature: String {
-        guard let temp = temp else {return ""}
-        return String.init(describing: temp)
-    }
+    
     var condition: String = ""
     
     mutating func updateWithData(_ data: Data){

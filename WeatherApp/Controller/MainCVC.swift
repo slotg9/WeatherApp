@@ -82,7 +82,8 @@ extension MainCVC {
         let cityVC = CityVC(currentWeatherAPI: API.openWeather,
                             hourlyForecastAPI: API.openWeather,
                             dailyForecastAPI: API.openWeather,
-                            coordinates: (Int(currentLocation.coordinate.latitude), Int(currentLocation.coordinate.longitude)) )
+                            coordinates: (48, 25))
+//                            coordinates: (Int(currentLocation.coordinate.latitude), Int(currentLocation.coordinate.longitude)) )
         self.addChildViewController(cityVC)
         cell.contentView.addSubview(cityVC.view)
         cityVC.view.frame = cell.contentView.frame
